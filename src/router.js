@@ -5,6 +5,8 @@ import Login from './views/Login.vue'
 import Users from './views/Users.vue'
 import Teams from './views/Teams.vue'
 import Challenges from './views/Challenges.vue'
+import Competitions from './views/Competitions.vue'
+import Admins from './views/Admins.vue'
 
 Vue.use(Router)
 
@@ -36,6 +38,16 @@ export default new Router({
       path: '/challenges',
       name: 'challenges',
       component: Challenges
+    },
+    {
+      path: '/competitions',
+      name: 'competitions',
+      component: Competitions
+    },
+    {
+      path: '/admins',
+      name: 'admins',
+      component: Admins
     }
   ]
 })

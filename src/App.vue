@@ -10,11 +10,12 @@
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
-        <b-nav-item>Competitions</b-nav-item>
+        <b-nav-item><router-link to="/admins">Admins</router-link></b-nav-item>
+        <b-nav-item><router-link to="/competitions">Competitions</router-link></b-nav-item>
         <b-nav-item-dropdown :text="$store.competition ? $store.competition.name : ''" right>
           <b-dropdown-item @click="updateCompetition(competition); $refs.view.load()" v-for="(competition, index) in $store.competitions" :key="index">{{ competition.name }}</b-dropdown-item>
         </b-nav-item-dropdown>
-        <b-nav-item>Log Out</b-nav-item>
+        <b-nav-item @click="logout">Log Out</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
     <router-view class="m-4" ref="view"></router-view>

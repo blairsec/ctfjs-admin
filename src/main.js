@@ -62,7 +62,7 @@ Vue.mixin({
         this.$store.competition = localStorage.competition && this.$store.competitions.filter(c => c.id === parseInt(localStorage.competition))[0] ? this.$store.competitions.filter(c => c.id === parseInt(localStorage.competition))[0] : this.$store.competitions[0]
         this.$store.competitionLoaded = true
         this.$store.loaded = true
-      }.bind(this))
+      }.bind(this)).catch(() => this.$router.push('/login'))
     }
   }
 })

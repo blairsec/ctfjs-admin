@@ -2,9 +2,10 @@
 	<div><h5>{{ this.rows.length }} challenges have been created.</h5> <b-button variant="primary" class="mb-2" v-b-modal.createChallenge>Create Challenge</b-button>
 		<vue-good-table :columns="columns" :rows="rows" :pagination-options="{ enabled: true }" :sort-options="{ enabled: true }"/>
 
-		<b-modal id="createChallenge" title="Create Challenge" size="lg">
+		<b-modal id="createChallenge" ref="createChallenge" title="Create Challenge" size="lg">
 			<div slot="modal-footer"></div>
-			<b-form>
+			<b-form @submit="create">
+
 				<b-form-group id="titleGroup"
 				              label="Title:"
 				              label-for="title">
@@ -91,7 +92,7 @@ import { VueGoodTable } from 'vue-good-table';
 export default {
 	name: 'teams',
 	components: {
-		VueGoodTable
+		VueGoodTable,
 	},
 	data () {
 		return {
@@ -131,7 +132,16 @@ export default {
 				}
 			],
 			rows: [],
-			form: {}
+			form: {
+				title: null,
+				description: null,
+				hint: null,
+				category: null,
+				author: null,
+				flag: null,
+				value: null,
+				enabled: false
+			}
 		}
 	},
 	methods: {
@@ -139,6 +149,11 @@ export default {
 			this.reload().then(function () { this.get('/challenges').then(function (response) {
 				this.rows = response.data
 			}.bind(this)) }.bind(this))
+		},
+		create (e) {
+			e.preventDefault()
+			if (!this.form.hint) this.form.hint = null
+			this.post('/challenges', this.form).then(this.$refs.createChallenge.hide).then(this.load)
 		}
 	},
 	mounted () {
