@@ -7,6 +7,7 @@
         <b-nav-item><router-link to="/users">Users</router-link></b-nav-item>
         <b-nav-item><router-link to="/teams">Teams</router-link></b-nav-item>
         <b-nav-item><router-link to="/challenges">Challenges</router-link></b-nav-item>
+        <b-nav-item><router-link to="/instances">Instances</router-link></b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">

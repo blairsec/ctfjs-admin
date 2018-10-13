@@ -7,6 +7,7 @@ import Teams from './views/Teams.vue'
 import Challenges from './views/Challenges.vue'
 import Competitions from './views/Competitions.vue'
 import Admins from './views/Admins.vue'
+import Instances from './views/Instances.vue'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/admins',
       name: 'admins',
       component: Admins
+    },
+    {
+      path: '/instances',
+      name: 'instances',
+      component: Instances
     }
   ]
 })
