@@ -36,7 +36,8 @@ Vue.mixin({
     updateCompetition (competition) {
       this.$store.competition = competition
       localStorage.competition = competition.id
-      this.reload().then(function () { this.routerKey++ }.bind(this))
+      this.reload().then(function () { this.routerKey++ }.bind(this)) 
+      this.$emit('reload')
     },
     reload () {
       var emptyUser = {

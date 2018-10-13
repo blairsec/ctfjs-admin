@@ -1,28 +1,21 @@
 <template>
-	<div><h5>{{ this.rows.length }} teams have registered.</h5>
-		<vue-good-table :columns="columns" :rows="rows" :pagination-options="{ enabled: true }" :sort-options="{ enabled: true }"/>
+	<div>
+		<Object :fields="fields" :columns="columns" url="/teams" name="team"></Object>
 	</div>
 </template>
 
 <script>
 import { VueGoodTable } from 'vue-good-table';
+import Object from '../components/Object'
 export default {
 	name: 'teams',
 	components: {
-		VueGoodTable
+		VueGoodTable,
+		Object
 	},
 	data () {
 		return {
 			columns: [
-				{
-					label: 'ID',
-					field: 'id',
-					filterOptions: {
-						enabled: true
-					},
-					type: 'number',
-					width: '50px'
-				},
 				{
 					label: 'Name',
 					field: 'name',
@@ -43,18 +36,19 @@ export default {
 					type: 'boolean'
 				}
 			],
-			rows: []
+			fields: [
+				{
+					name: 'name',
+					type: 'text',
+					required: true
+				},
+				{
+					name: 'affiliation',
+					type: 'text',
+					required: true
+				}
+			]
 		}
-	},
-	methods: {
-		load () {
-			this.reload().then(function () { this.get('/teams').then(function (response) {
-				this.rows = response.data
-			}.bind(this)) }.bind(this))
-		}
-	},
-	mounted () {
-		this.load()
 	}
 }
 </script>

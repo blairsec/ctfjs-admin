@@ -13,7 +13,7 @@
         <b-nav-item><router-link to="/admins">Admins</router-link></b-nav-item>
         <b-nav-item><router-link to="/competitions">Competitions</router-link></b-nav-item>
         <b-nav-item-dropdown :text="$store.competition ? $store.competition.name : ''" right>
-          <b-dropdown-item @click="updateCompetition(competition); $refs.view.load()" v-for="(competition, index) in $store.competitions" :key="index">{{ competition.name }}</b-dropdown-item>
+          <b-dropdown-item @click="updateCompetition(competition)" v-for="(competition, index) in $store.competitions" :key="index">{{ competition.name }}</b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item @click="logout">Log Out</b-nav-item>
       </b-navbar-nav>

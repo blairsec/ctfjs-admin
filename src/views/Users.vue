@@ -1,28 +1,21 @@
 <template>
-	<div><h5>{{ this.rows.length }} users have registered.</h5>
-		<vue-good-table :columns="columns" :rows="rows" :pagination-options="{ enabled: true }" :sort-options="{ enabled: true }"/>
+	<div>
+		<Object :fields="fields" :columns="columns" url="/users" name="user"></Object>
 	</div>
 </template>
 
 <script>
 import { VueGoodTable } from 'vue-good-table';
+import Object from '../components/Object'
 export default {
 	name: 'users',
 	components: {
-		VueGoodTable
+		VueGoodTable,
+		Object
 	},
 	data () {
 		return {
 			columns: [
-				{
-					label: 'ID',
-					field: 'id',
-					filterOptions: {
-						enabled: true
-					},
-					type: 'number',
-					width: '50px'
-				},
 				{
 					label: 'Username',
 					field: 'username',
@@ -51,18 +44,30 @@ export default {
 					width: '20px'
 				}
 			],
-			rows: []
+			fields: [
+				{
+					name: 'username',
+					type: 'text',
+					required: true
+				},
+				{
+					name: 'email',
+					type: 'text',
+					required: true
+				},
+				{
+					name: 'password',
+					type: 'password',
+					editable: false,
+					required: true
+				},
+				{
+					name: 'eligible',
+					type: 'boolean',
+					required: true
+				}
+			]
 		}
-	},
-	methods: {
-		load () {
-			this.reload().then(function () { this.get('/users').then(function (response) {
-				this.rows = response.data
-			}.bind(this)) }.bind(this))
-		}
-	},
-	mounted () {
-		this.load()
 	}
 }
 </script>

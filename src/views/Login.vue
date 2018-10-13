@@ -42,7 +42,7 @@ export default {
 			this.post('/admin/auth', { username: this.form.username, password: this.form.password }, false).then(function (res) {
 			  localStorage['token'] = res.data.token
 			  this.$router.push('/')
-			}.bind(this)).then(this.reload).then(function () { alert('You have logged in.') }.bind(this)).catch(function (error) {
+			}.bind(this)).then(this.reload).catch(function (error) {
 			  if (error.response.status === 401) alert('You couldn\'t be logged in. Wrong username or password?')
 			  else if (error.response.status === 400) alert('Make sure to fill out all required fields.')
 			}.bind(this))
