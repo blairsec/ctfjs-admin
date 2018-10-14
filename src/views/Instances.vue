@@ -69,6 +69,7 @@ export default {
 			this.patch('/narwhal/instances/'+instance, {action: action}, false).then(this.load)
 		},
 		create () {
+			if (!this.form.environment.VIRTUAL_HOST) delete this.form.environment
 			this.post('/narwhal/instances', this.form, false).then(this.load).then(function () {
 				this.form = {
 				repo: null,
