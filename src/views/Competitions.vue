@@ -1,5 +1,5 @@
 <template>
-	<div><h5>{{ this.rows.length }} competitions have been created.</h5> <b-button variant="primary" class="mb-2" v-b-modal.createCompetition>Create Competition</b-button>
+	<div><h1 style="padding-bottom: 0.2em;">Competitions</h1><h5>{{ this.rows.length }} competitions have been created.</h5> <b-button variant="primary" class="mb-2" v-b-modal.createCompetition>Create Competition</b-button>
 		<vue-good-table :columns="columns" :rows="rows" :pagination-options="{ enabled: true }" :sort-options="{ enabled: true }">
 			    <template slot="table-row" slot-scope="props" >
 			    </template>

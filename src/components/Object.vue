@@ -1,5 +1,6 @@
 <template>
-	<div><h5>{{ this.rows.length }} {{ name }}s have been created.</h5> <b-button variant="primary" class="mb-2" v-b-modal.createObject>Create {{ toTitleCase(name) }}</b-button>
+	<div><h1 style="padding-bottom: 0.2em;">{{ toTitleCase(name) }}s</h1>
+		<h5>{{ this.rows.length }} {{ name }}s have been created.</h5> <b-button variant="primary" class="mb-2" v-b-modal.createObject>Create {{ toTitleCase(name) }}</b-button>
 		<vue-good-table :columns="setColumns" :rows="rows" :pagination-options="{ enabled: true }" :sort-options="{ enabled: true }">
 			    <template slot="table-row" slot-scope="props" >
 			    </template>

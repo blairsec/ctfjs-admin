@@ -9,6 +9,7 @@ import Competitions from './views/Competitions.vue'
 import Admins from './views/Admins.vue'
 import Instances from './views/Instances.vue'
 import Files from './views/Files.vue'
+import Shell from './views/Shell.vue'
 
 Vue.use(Router)
 
@@ -60,6 +61,11 @@ export default new Router({
       path: '/files',
       name: 'files',
       component: Files
+    },
+    {
+      path: '/shell',
+      name: 'shell',
+      component: Shell
     }
   ]
 })
