@@ -183,6 +183,8 @@ export default {
 		},
 		save (e) {
 			e.preventDefault()
+			this.editCompetition.start = this.start
+			this.editCompetition.end = this.end
 			this.patch('/competitions/'+this.editCompetition.id, this.editCompetition, false).then(this.$refs.editCompetition.hide).then(this.load)
 		},
 		setEditCompetition (e) {

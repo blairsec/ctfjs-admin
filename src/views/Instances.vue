@@ -3,6 +3,7 @@
 		<h1>Instances</h1>
 		<div v-for="(value, key) in instances" style="padding: 1em;">
 			{{ value.image }}
+			{{ value.domain }}
 			({{ value.status }})<br>
 			<b-button @click="action(key, 'start')" variant="success">Start</b-button>&nbsp;
 			<b-button @click="action(key, 'stop')" variant="warning">Stop</b-button>&nbsp;
@@ -35,7 +36,7 @@
 		              label-for="domain">
 		  <b-form-input id="domain"
 		                type="text"
-		                v-model="form.environment.VIRTUAL_HOST"
+		                v-model="form.domain"
 		                required
 		                placeholder="Enter domain">
 		  </b-form-input>
@@ -52,36 +53,31 @@ export default {
 			form: {
 				repo: null,
 				tag: null,
-				environment: {
-					VIRTUAL_HOST: null
-				}
+				domain: null
 			}
 		}
 	},
 	methods: {
 		load () {
-			this.get('/narwhal/instances', false).then(function (res) {
+			this.get('/instances', false).then(function (res) {
 				this.instances = res.data
 				console.log(this.instances)
 			}.bind(this))
 		},
 		action (instance, action) {
-			this.patch('/narwhal/instances/'+instance, {action: action}, false).then(this.load)
+			this.patch('/instances/'+instance, {action: action}, false).then(this.load)
 		},
 		create () {
-			if (!this.form.environment.VIRTUAL_HOST) delete this.form.environment
-			this.post('/narwhal/instances', this.form, false).then(this.load).then(function () {
+			this.post('/instances', this.form, false).then(this.load).then(function () {
 				this.form = {
 				repo: null,
 				tag: null,
-				environment: {
-					VIRTUAL_HOST: null
-				}
+				domain: null
 			}
 			}.bind(this))
 		},
 		deleteInstance (instance) {
-			this.deleteRequest('/narwhal/instances/'+instance, false).then(this.load)
+			this.deleteRequest('/instances/'+instance, false).then(this.load)
 		}
 	},
 	mounted () {
