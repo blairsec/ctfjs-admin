@@ -5,7 +5,7 @@
     	<h2>{{ challenge.title }} <b-button variant="primary" @click="toggle(challenge.id)">{{ show[challenge.id] ? 'Hide' : 'Show' }}</b-button></h2>
     	<div v-if="show[challenge.id]">
     		<ul><li class="file" v-for="file in files[challenge.id]">{{ file.url }} <b-button variant="info" :href="file.url">View</b-button>&nbsp;<b-button variant="danger" @click="deleteFile(file.id, challenge.id)">Delete</b-button><br></li></ul>
-    		<b-row><b-col><b-form-file id="file" required></b-form-file></b-col><b-col><b-button @click="save(challenge.id)">Add File</b-button></b-col></b-row>
+    		<b-row><b-col><b-form-file :id="'file' + challenge.id" required></b-form-file></b-col><b-col><b-button @click="save(challenge.id)">Add File</b-button></b-col></b-row>
     		<br>
     	</div>
     </div>
@@ -17,10 +17,6 @@ import axios from 'axios'
 export default {
 	data () {
 		return {
-			file: {
-				source: null,
-				destination: null
-			},
 			challenges: [],
 			show: {},
 			files: {}
@@ -29,7 +25,7 @@ export default {
 	methods: {
 		save (c) {
 			var formData = new FormData()
-			formData.append('file', document.getElementById('file').files[0])
+			formData.append('file', document.getElementById('file' + c).files[0])
 			this.post('/challenges/' + c + '/files', formData, {
 				headers: { 'Content-Type': 'multipart/form-data' }
 			}).then(function (res) {
