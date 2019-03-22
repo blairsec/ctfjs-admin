@@ -101,9 +101,7 @@ export default {
 			this.patch('/instances/'+instance, {action: action}, false).then(this.load)
 		},
 		create () {
-			payload = {
-				repo: this.form.repo,
-				tag: this.form.tag,
+			options = {
 				name: this.form.name,
 				restart_policy: {
 					Name: 'always'
@@ -117,6 +115,11 @@ export default {
 			if (this.form.inner && this.form.outer) {
 				payload.ports = {}
 				payload.ports[this.form.inner] = this.form.outer
+			}
+			payload = {
+				repo: this.form.repo,
+				tag: this.form.tag,
+				options: JSON.stringify(options)
 			}
 			this.post('/instances', payload, false).then(this.load).then(function () {
 				this.form = {
