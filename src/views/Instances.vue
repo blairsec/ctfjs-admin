@@ -50,7 +50,8 @@
 		                required
 		                placeholder="Enter domain">
 		  </b-form-input>
-		  <b-form-group
+		</b-form-group>
+		<b-form-group
 		              label="Inner port:"
 		              label-for="inner">
 		  <b-form-input id="inner"
@@ -69,7 +70,6 @@
 		                required
 		                placeholder="Enter port">
 		  </b-form-input>
-		</b-form-group>
 		</b-form-group>
 		<b-button @click="create" variant="primary">Create</b-button>
 	</div>
@@ -104,7 +104,10 @@ export default {
 			payload = {
 				repo: this.form.repo,
 				tag: this.form.tag,
-				name: this.form.name
+				name: this.form.name,
+				restart_policy: {
+					Name: 'always'
+				}
 			}
 			if (this.form.domain) {
 				payload.environment = {
