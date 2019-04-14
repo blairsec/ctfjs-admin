@@ -32,16 +32,6 @@
 		  </b-form-input>
 		</b-form-group>
 		<b-form-group
-		              label="Name:"
-		              label-for="name">
-		  <b-form-input id="name"
-		                type="text"
-		                v-model="form.name"
-		                required
-		                placeholder="Enter name">
-		  </b-form-input>
-		</b-form-group>
-		<b-form-group
 		              label="Domain:"
 		              label-for="domain">
 		  <b-form-input id="domain"
@@ -50,26 +40,6 @@
 		                required
 		                placeholder="Enter domain">
 		  </b-form-input>
-		  <b-form-group
-		              label="Inner port:"
-		              label-for="inner">
-		  <b-form-input id="inner"
-		                type="text"
-		                v-model="form.inner"
-		                required
-		                placeholder="Enter port">
-		  </b-form-input>
-		</b-form-group>
-		<b-form-group
-		              label="Outer port:"
-		              label-for="outer">
-		  <b-form-input id="outer"
-		                type="text"
-		                v-model="form.outer"
-		                required
-		                placeholder="Enter port">
-		  </b-form-input>
-		</b-form-group>
 		</b-form-group>
 		<b-button @click="create" variant="primary">Create</b-button>
 	</div>
@@ -83,10 +53,7 @@ export default {
 			form: {
 				repo: null,
 				tag: null,
-				name: null,
-				domain: null,
-				inner: null,
-				outer: null
+				domain: null
 			}
 		}
 	},
@@ -101,29 +68,11 @@ export default {
 			this.patch('/instances/'+instance, {action: action}, false).then(this.load)
 		},
 		create () {
-			payload = {
-				repo: this.form.repo,
-				tag: this.form.tag,
-				name: this.form.name
-			}
-			if (this.form.domain) {
-				payload.environment = {
-					VIRTUAL_HOST: this.form.domain
-				}
-			}
-			if (this.form.inner && this.form.outer) {
-				payload.ports = {
-					this.form.inner: this.form.outer
-				}
-			}
-			this.post('/instances', payload, false).then(this.load).then(function () {
+			this.post('/instances', this.form, false).then(this.load).then(function () {
 				this.form = {
 				repo: null,
 				tag: null,
-				name: null,
-				domain: null,
-				inner: null,
-				outer: null
+				domain: null
 			}
 			}.bind(this))
 		},
