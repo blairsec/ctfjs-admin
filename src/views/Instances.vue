@@ -115,8 +115,9 @@ export default {
 				}
 			}
 			if (this.form.inner && this.form.outer) {
-				payload.ports = {}
-				payload.ports[this.form.inner] = this.form.outer
+				payload.ports = {
+					this.form.inner: this.form.outer
+				}
 			}
 			this.post('/instances', payload, false).then(this.load).then(function () {
 				this.form = {
