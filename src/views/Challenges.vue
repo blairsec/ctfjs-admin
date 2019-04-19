@@ -31,6 +31,11 @@ export default {
 					}
 				},
 				{
+					label: 'Value',
+					field: 'value',
+					type: 'number'
+				},
+				{
 					label: 'Enabled',
 					field: 'enabled',
 					type: 'boolean'
