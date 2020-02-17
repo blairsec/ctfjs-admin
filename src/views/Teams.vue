@@ -46,6 +46,11 @@ export default {
 					name: 'affiliation',
 					type: 'text',
 					required: true
+				},
+				{
+					name: 'passcode'
+					type: 'text',
+					required: true
 				}
 			]
 		}
