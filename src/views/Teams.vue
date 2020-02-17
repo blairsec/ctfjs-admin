@@ -48,7 +48,7 @@ export default {
 					required: true
 				},
 				{
-					name: 'passcode'
+					name: 'passcode',
 					type: 'text',
 					required: true
 				}
